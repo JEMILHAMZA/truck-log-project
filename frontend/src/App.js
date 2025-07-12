@@ -1,3 +1,4 @@
+
 // src/App.js
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -17,42 +18,15 @@ function App() {
     
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
     try {
-      const response = await axios.post(`/api/plan-trip/`, {
+      const response = await axios.post(`${API_URL}/api/plan-trip/`, {
         start_location: formData.startLocation,
         pickup_location: formData.pickupLocation,
         dropoff_location: formData.dropoffLocation,
         cycle_used: formData.cycleUsed,
       });
       setTripData(response.data);
-    }  catch (err) {
-      // --- START: ENHANCED ERROR LOGGING ---
-
-      console.error("API Request Failed:", err);
-
-      if (err.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.error("Response Data:", err.response.data);
-        console.error("Response Status:", err.response.status);
-        console.error("Response Headers:", err.response.headers);
-        
-        // Set a more informative error message for the user
-        const serverError = err.response.data?.error || `Request failed with status ${err.response.status}`;
-        setError(serverError);
-
-      } else if (err.request) {
-        // The request was made but no response was received
-        console.error("Request Data:", err.request);
-        setError("Network error: The server did not respond. Please check your connection or the server status.");
-
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error('Error Message:', err.message);
-        setError('An unexpected error occurred while setting up the request.');
-      }
-      
-      // --- END: ENHANCED ERROR LOGGING ---
-
+    } catch (err) {
+      setError(err.response?.data?.error || 'An unexpected error occurred.');
     } finally {
       setLoading(false);
     }
