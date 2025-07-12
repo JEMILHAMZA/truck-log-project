@@ -17,7 +17,7 @@ function App() {
     
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
     try {
-      const response = await axios.postt(`${API_URL}/api/plan-trip/`, {
+      const response = await axios.post(`${API_URL}/api/plan-trip/`, {
         start_location: formData.startLocation,
         pickup_location: formData.pickupLocation,
         dropoff_location: formData.dropoffLocation,
