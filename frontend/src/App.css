@@ -1,0 +1,131 @@
+/* src/App.css */
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.App-header {
+  background: linear-gradient(135deg, var(--secondary-color), #34495e);
+  color: var(--surface-color);
+  padding: 40px 30px;
+  text-align: center;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.App-header p {
+  margin: 10px 0 0;
+  font-size: 1.1em;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* --- Results Section Styling --- */
+.trip-result {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.trip-result h2 {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: var(--secondary-color);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
+  margin: 0;
+}
+
+
+/* --- Reusable Loader and Error Components --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  gap: 15px;
+  font-size: 1.2em;
+  color: var(--text-secondary);
+  flex-direction: column;
+}
+
+.loader::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error-message {
+  text-align: center;
+  color: var(--error-color);
+  background-color: #fdecea;
+  padding: 20px;
+  border: 1px solid var(--error-color);
+  border-left-width: 5px;
+  border-radius: var(--border-radius);
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+
+/* --- Map Marker & Container Styles --- */
+.map-view-container {
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.map-view-container .leaflet-div-icon {
+  background: transparent;
+  border: none;
+}
+
+.custom-div-icon .marker-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease-in-out;
+}
+
+.leaflet-marker-pane:hover .marker-pin {
+  transform: rotate(-45deg) scale(1.1);
+}
+
+.custom-div-icon .marker-pin::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  margin: 8px 0 0 8px;
+  background: #ffffff;
+  position: absolute;
+  border-radius: 50%;
+}

@@ -1,0 +1,171 @@
+/* src/components/DailyLogSheet.css */
+
+.log-sheet-container {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: 20px;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  background: var(--surface-color);
+  box-shadow: var(--shadow);
+  overflow: hidden; /* Important for border-radius */
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: var(--secondary-color);
+  color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+}
+
+.log-grid-area {
+  display: flex;
+}
+
+.status-labels {
+  padding: 10px 15px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: right;
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  background: #fdfdfd;
+}
+
+.status-labels > div {
+  height: 25%;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.grid {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(96, 1fr); /* 96 units for 15-min intervals */
+  grid-template-rows: repeat(4, 1fr);
+  height: 200px;
+  position: relative;
+  background-color: #fff;
+  background-image: 
+    repeating-linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+    repeating-linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+  background-size: calc(100% / 24) 25%;
+}
+
+.hour-marker {
+  grid-column: span 4; /* Each marker covers an hour (4 * 15min) */
+  grid-row: 1 / -1;
+  border-left: 1px solid #dcdcdc;
+  position: relative;
+}
+
+.hour-marker:first-child {
+  border-left: none;
+}
+
+.hour-marker span {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  transform: translateX(-50%);
+  font-size: 0.75em;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* Hide on mobile/small screens */
+@media (max-width: 600px) {
+  .hour-marker span {
+    display: none;
+  }
+}
+
+/* For medium screens (600-800px) */
+@media (min-width: 600px) and (max-width: 800px) {
+  .hour-marker span::before {
+    content: attr(data-hour);
+  }
+  .hour-marker span {
+    font-size: 0; /* Hide original text */
+  }
+  .hour-marker span::before {
+    font-size: 0.75rem; /* Show number */
+  }
+}
+
+.event-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+.event-overlay line {
+  transition: all 0.3s ease-in-out;
+}
+
+.total-hours {
+  padding: 10px 15px;
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-weight: 600;
+  background: #fdfdfd;
+}
+
+.total-hours > div {
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.total-sum {
+  border-top: 2px solid var(--secondary-color);
+  font-size: 1.1em;
+  color: var(--secondary-color);
+}
+
+.remarks-section {
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+  background-color: #fafafa;
+}
+
+.remarks-section h4 {
+  margin: 0 0 15px 0;
+  color: var(--secondary-color);
+  font-family: 'Poppins', sans-serif;
+}
+
+.remarks-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.remarks-section li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.remark-time {
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: #eaf5fc;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
