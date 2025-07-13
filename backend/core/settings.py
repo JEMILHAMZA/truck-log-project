@@ -44,7 +44,7 @@ ALLOWED_HOSTS = [
 # It's good practice to add them as environment variables.
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://truck-log-project.onrender.com/",
+    "https://truck-log-project.onrender.com",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')

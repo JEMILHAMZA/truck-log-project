@@ -16,7 +16,7 @@ function App() {
     setError('');
     setTripData(null);
     
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const API_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await axios.post(`${API_URL}/api/plan-trip/`, {
         start_location: formData.startLocation,
