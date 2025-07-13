@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "truck-log-project.onrender.com",  # or your real Render hostname
+    "truck-log-backend.onrender.com",
 ]
 # backend/core/settings.py
 
