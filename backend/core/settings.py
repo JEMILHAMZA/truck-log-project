@@ -47,14 +47,14 @@ CORS_ALLOWED_ORIGINS = [
     "https://truck-log-project.onrender.com/",
 ]
 
-# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-# if RENDER_EXTERNAL_HOSTNAME:
-#     CORS_ALLOWED_ORIGINS.append(RENDER_EXTERNAL_HOSTNAME)
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    CORS_ALLOWED_ORIGINS.append(RENDER_EXTERNAL_HOSTNAME)
 
-# # You will create an environment variable for your frontend's URL later.
-# FRONTEND_URL = os.environ.get('FRONTEND_URL')
-# if FRONTEND_URL:
-#     CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
+# You will create an environment variable for your frontend's URL later.
+FRONTEND_URL = os.environ.get('FRONTEND_URL')
+if FRONTEND_URL:
+    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
 
 # Application definition
 
