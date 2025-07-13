@@ -1,6 +1,13 @@
 # trip_planner/services.py
 import requests
 import datetime
+
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 from django.conf import settings
 
 # --- HOS Rules Constants ---
@@ -95,7 +102,7 @@ class TripSimulator:
             self.daily_on_duty_time = 0
 
     def _get_route_info(self, start_coords, end_coords):
-        headers = { 'Authorization': settings.ORS_API_KEY }
+        headers = { 'Authorization': os.environ.get('ORS_API_KEY') }
         params = {
             'start': f"{start_coords[0]},{start_coords[1]}",
             'end': f"{end_coords[0]},{end_coords[1]}"
@@ -115,7 +122,7 @@ class TripSimulator:
         }
 
     def _get_coords(self, location_name):
-        headers = { 'Authorization': settings.ORS_API_KEY }
+        headers = { 'Authorization': os.environ.get('ORS_API_KEY') }
         params = { 'text': location_name, 'size': 1 }
         response = requests.get("https://api.openrouteservice.org/geocode/search", headers=headers, params=params)
         response.raise_for_status()
